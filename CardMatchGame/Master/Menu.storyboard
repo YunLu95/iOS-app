@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2OE-1Q-shG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -16,44 +16,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MENU" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ezb-bX-ZE6">
-                                <rect key="frame" x="150.5" y="340" width="113" height="44"/>
-                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MENU" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ezb-bX-ZE6">
+                                <rect key="frame" x="150.5" y="430.5" width="113" height="45.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-PL-mFo">
-                                <rect key="frame" x="192" y="411" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-PL-mFo">
+                                <rect key="frame" x="192" y="503" width="30" height="30"/>
                                 <state key="normal" title="2X2">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="button2pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="17M-rT-uhD"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp4-c0-umW">
-                                <rect key="frame" x="192" y="455" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp4-c0-umW">
+                                <rect key="frame" x="192" y="547" width="30" height="30"/>
                                 <state key="normal" title="4X4">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="button4pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="Hg0-XT-6mg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXV-pM-9aP">
+                                <rect key="frame" x="192" y="591" width="30" height="30"/>
+                                <state key="normal" title="6X6">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="button6pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="zSb-Lj-oaR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekN-Zx-GVV">
                                 <rect key="frame" x="207" y="534" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="2X2"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXV-pM-9aP">
-                                <rect key="frame" x="192" y="501" width="30" height="25"/>
-                                <state key="normal" title="6X6">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="aXV-pM-9aP" firstAttribute="centerX" secondItem="bp4-c0-umW" secondAttribute="centerX" id="0jA-g0-F5W"/>
                             <constraint firstItem="sdQ-PL-mFo" firstAttribute="centerX" secondItem="Ezb-bX-ZE6" secondAttribute="centerX" id="5Qp-qX-kwC"/>
                             <constraint firstItem="Ezb-bX-ZE6" firstAttribute="centerX" secondItem="aVS-Vx-6Wz" secondAttribute="centerX" id="NRX-fG-Vb2"/>
                             <constraint firstItem="aXV-pM-9aP" firstAttribute="top" secondItem="bp4-c0-umW" secondAttribute="bottom" constant="14" id="acJ-Gp-XSg"/>
                             <constraint firstItem="bp4-c0-umW" firstAttribute="centerX" secondItem="sdQ-PL-mFo" secondAttribute="centerX" id="fzz-Xt-z5T"/>
+                            <constraint firstItem="Ezb-bX-ZE6" firstAttribute="centerY" secondItem="aVS-Vx-6Wz" secondAttribute="centerY" id="iDS-bV-91d"/>
                             <constraint firstItem="sdQ-PL-mFo" firstAttribute="top" secondItem="Ezb-bX-ZE6" secondAttribute="bottom" constant="27" id="icP-aP-ZFb"/>
                             <constraint firstItem="bp4-c0-umW" firstAttribute="top" secondItem="sdQ-PL-mFo" secondAttribute="bottom" constant="14" id="wZX-L9-aAD"/>
                         </constraints>
@@ -61,9 +71,7 @@
                     </view>
                     <connections>
                         <outlet property="MenuView" destination="JKf-bT-MuI" id="dUF-DG-xv9"/>
-                        <outlet property="MenuViewController" destination="JKf-bT-MuI" id="phZ-Hc-NQn"/>
                         <outlet property="button2" destination="sdQ-PL-mFo" id="dyb-eQ-Uox"/>
-                        <outlet property="button4" destination="bp4-c0-umW" id="MF7-v7-XQX"/>
                         <outlet property="button6" destination="aXV-pM-9aP" id="Zup-A2-9g9"/>
                         <outlet property="menuName" destination="Ezb-bX-ZE6" id="6Au-Ee-qsV"/>
                     </connections>
@@ -71,6 +79,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0w-W3-XLX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="365.21739130434787" y="-35.491071428571423"/>
+        </scene>
+        <!--Master-->
+        <scene sceneID="pk6-zD-TzG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Master" id="xCx-I9-ON5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y28-vH-u0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="979" y="-217"/>
         </scene>
     </scenes>
 </document>
