@@ -2,7 +2,6 @@
 //  ViewController.swift
 //  CardMatchGame
 //
-//  Created by panxingyang on 9/18/19.
 //  Copyright © 2019 Yun Lu. All rights reserved.
 //
 
@@ -14,7 +13,10 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     private let spacing : CGFloat = 10.0
    // private let numberOfCardPerRow
     var model = CardModel()
+    
     var cardArray = [Card]()
+    var flippedCard : IndexPath?
+    
     @IBOutlet weak var menuBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,26 +25,15 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         menuBtn.addTarget(self, action: #selector(menuBtnPressed), for: UIControl.Event.touchUpInside)
-        cardArray = model.getCards()
-        print()
+       // model.setGridSize(sizeOfGrid)
+        cardArray = model.getCards(number: sizeOfGrid)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
         
        
     }
-//    func addMenuScreen(){
-//
-//        let storyboard = UIStoryboard(name: "Menu", bundle: nil)
-//        guard let controller = storyboard.instantiateInitialViewController() as? MenuViewController else { return }
-//        controller.willMove(toParent: self)
-//        addChild(controller)
-//        self.view.addSubview(controller.view)
-//        controller.didMove(toParent: self)
-//
-//
-//    }
-    
     
 
     func transitionToViewController (){
@@ -62,7 +53,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBAction func menuBtnPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "menuSegue", sender: self)
-        print("Menu pressed!")
+       // print("Menu pressed!")
 
     }
     
@@ -86,13 +77,63 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let card = cardArray[indexPath.row]
         print(card.cardLabel)
-        if card.isFlipped == false {
+        if card.isFlipped == false && card.isMatched == false {
             //flip card
             cell.flip()
             card.isFlipped = true
+            //check if there is any other flipped card
+            if(flippedCard == nil){
+                flippedCard = indexPath
+            }else{
+                //perform matching
+                cardMatches(indexPath)
+                checkGameEnd()
+            }
+        }
+    }
+    
+    func cardMatches (_ secondFlippedCardIndex : IndexPath){
+        let cardOneCell = collectionView.cellForItem(at: flippedCard!) as? CollectionViewCell
+        let cardTwoCell = collectionView.cellForItem(at: secondFlippedCardIndex) as? CollectionViewCell
+        let cardOne = cardArray[flippedCard!.row]
+        let cardTwo = cardArray[secondFlippedCardIndex.row]
+        
+        if (cardOne.cardLabel == cardTwo.cardLabel){
+            cardOne.isMatched = true
+            cardTwo.isMatched = true
+            //check if game end here
+//            checkGameEnd()
+            
         }else{
-            cell.filpBack()
-            card.isFlipped = false
+            cardOne.isFlipped = false
+            cardTwo.isFlipped = false
+            cardOneCell?.filpBack()
+            cardTwoCell?.filpBack()
+            
+        }
+        flippedCard = nil;
+        
+    }
+    func checkGameEnd(){
+        //if no card left unmatched , user won pop up notification.
+        var won = true
+        for card in cardArray {
+            if(card.isMatched == false){
+                won = false
+                break
+            }
+        }
+        var title = ""
+        var message = ""
+        if won == true {
+            title = "Congratulations!"
+            message = "You've Won!"
+        
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "One More Time!", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            present(alert, animated: true, completion: nil)
+            
         }
         
         
@@ -100,8 +141,6 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     // function I tried to use to get cells auto sized but not working yet.
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCardPerRow: CGFloat = CGFloat(sizeOfGrid);
         let spacingBetweenCells: CGFloat = 10;

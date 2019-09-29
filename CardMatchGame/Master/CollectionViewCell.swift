@@ -25,7 +25,9 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func filpBack(){
-        UIView.transition(from: cardLabel, to: backImageView, duration: 0.5, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            UIView.transition(from: self.cardLabel, to: self.backImageView, duration: 0.5, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
+        }
     }
     
 }
