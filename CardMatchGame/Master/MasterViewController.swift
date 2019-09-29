@@ -8,7 +8,7 @@
 import UIKit
 
 class MasterViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
-    let sizeOfGrid = 4
+    let sizeOfGrid = 6
     let emojiChoices=["👽","😈","🤡","👿","🤢","🎃","😺","💩","👾","🤠","👺","👹","🤖","🌛","🌜","🌟","⛄️","✨"]
     private let spacing : CGFloat = 10.0
    // private let numberOfCardPerRow
@@ -23,14 +23,22 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         menuBtn.addTarget(self, action: #selector(menuBtnPressed), for: UIControl.Event.touchUpInside)
        // model.setGridSize(sizeOfGrid)
         cardArray = model.getCards(number: sizeOfGrid)
         
+        
         collectionView.delegate = self
+        
         collectionView.dataSource = self
         
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        layout.minimumLineSpacing = spacing
+        layout.minimumInteritemSpacing = spacing
+        self.collectionView?.collectionViewLayout = layout
         
        
     }
@@ -74,7 +82,6 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        
         let card = cardArray[indexPath.row]
         print(card.cardLabel)
         if card.isFlipped == false && card.isMatched == false {
@@ -87,7 +94,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
             }else{
                 //perform matching
                 cardMatches(indexPath)
-                checkGameEnd()
+//                checkGameEnd()
             }
         }
     }
@@ -102,7 +109,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
             cardOne.isMatched = true
             cardTwo.isMatched = true
             //check if game end here
-//            checkGameEnd()
+            checkGameEnd()
             
         }else{
             cardOne.isFlipped = false
@@ -143,7 +150,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     // function I tried to use to get cells auto sized but not working yet.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCardPerRow: CGFloat = CGFloat(sizeOfGrid);
-        let spacingBetweenCells: CGFloat = 10;
+        let spacingBetweenCells: CGFloat = 20;
         let totalSpacing = (2 * self.spacing) + ( (numberOfCardPerRow - 1) * spacingBetweenCells )
         
         if let collection = self.collectionView{
