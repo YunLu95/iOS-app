@@ -101,7 +101,9 @@
         <!--Menu-->
         <scene sceneID="U5d-5a-ZFC">
             <objects>
-                <viewControllerPlaceholder storyboardName="Menu" id="swZ-Ct-29v" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Menu" id="swZ-Ct-29v" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="reL-EA-P4k"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3JC-n2-NGz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="796" y="-59"/>

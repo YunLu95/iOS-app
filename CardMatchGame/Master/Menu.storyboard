@@ -30,6 +30,7 @@
                                 </state>
                                 <connections>
                                     <action selector="button2pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="17M-rT-uhD"/>
+                                    <segue destination="xCx-I9-ON5" kind="show" identifier="size2Segue" id="ept-kd-FbE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp4-c0-umW">
@@ -39,6 +40,7 @@
                                 </state>
                                 <connections>
                                     <action selector="button4pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="Hg0-XT-6mg"/>
+                                    <segue destination="xCx-I9-ON5" kind="show" identifier="size4Segue" id="CMo-90-7Lu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXV-pM-9aP">
@@ -48,12 +50,21 @@
                                 </state>
                                 <connections>
                                     <action selector="button6pressed:" destination="2OE-1Q-shG" eventType="touchUpInside" id="zSb-Lj-oaR"/>
+                                    <segue destination="xCx-I9-ON5" kind="show" identifier="size6Segue" id="y8r-c5-POc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekN-Zx-GVV">
                                 <rect key="frame" x="207" y="534" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="2X2"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3J9-XH-1Cq">
+                                <rect key="frame" x="190" y="629" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="2OE-1Q-shG" eventType="touchUpInside" id="8jq-fH-EJ9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="MenuView" destination="JKf-bT-MuI" id="dUF-DG-xv9"/>
+                        <outlet property="backBtn" destination="3J9-XH-1Cq" id="SZ8-QW-aQA"/>
                         <outlet property="button2" destination="sdQ-PL-mFo" id="dyb-eQ-Uox"/>
                         <outlet property="button6" destination="aXV-pM-9aP" id="Zup-A2-9g9"/>
                         <outlet property="menuName" destination="Ezb-bX-ZE6" id="6Au-Ee-qsV"/>
@@ -83,10 +95,15 @@
         <!--Master-->
         <scene sceneID="pk6-zD-TzG">
             <objects>
-                <viewControllerPlaceholder storyboardName="Master" id="xCx-I9-ON5" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Master" id="xCx-I9-ON5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Pjt-Qg-kPY"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y28-vH-u0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="979" y="-217"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ept-kd-FbE"/>
+    </inferredMetricsTieBreakers>
 </document>

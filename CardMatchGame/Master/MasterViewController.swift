@@ -8,7 +8,7 @@
 import UIKit
 
 class MasterViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
-    let sizeOfGrid = 6
+    var sizeOfGrid = 2
     let emojiChoices=["👽","😈","🤡","👿","🤢","🎃","😺","💩","👾","🤠","👺","👹","🤖","🌛","🌜","🌟","⛄️","✨"]
     private let spacing : CGFloat = 10.0
    // private let numberOfCardPerRow
