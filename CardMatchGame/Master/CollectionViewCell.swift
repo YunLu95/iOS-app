@@ -30,4 +30,8 @@ class CollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func reset() {
+        UIView.transition(from: cardLabel, to: backImageView, duration: 0.0, options: .curveLinear, completion: nil)
+    }
+    
 }

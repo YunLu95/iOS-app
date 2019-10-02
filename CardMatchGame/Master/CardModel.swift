@@ -3,7 +3,8 @@
 //  CardMatchGame
 //
 //  Copyright © 2019 Yun Lu. All rights reserved.
-//
+//collection view layout code refer
+//https://medium.com/@NickBabo/equally-spaced-uicollectionview-cells-6e60ce8d457b
 
 import Foundation
 
@@ -21,9 +22,10 @@ class CardModel {
     func getCards (number : Int ) -> [Card] {
         
         var cardsArray = [Card]()
+        generatedNumbers = []
         
-        
-        while generatedNumbers.count < ( number*number / 2 ){ //TODO: replace variable by number in menuviewcontroller.
+        while generatedNumbers.count < ( number*number / 2 ){
+            
             let radomNumberOfPair = Int(arc4random_uniform(18))
             //generate unique random number
             if generatedNumbers.contains( Int(radomNumberOfPair) ) == false {
@@ -42,7 +44,7 @@ class CardModel {
                 print(generatedNumbers)
             }
         }
-        
+        //shuffle cards
         for i in 0...generatedNumbers.count-1{
             let index = Int(arc4random_uniform(UInt32(cardsArray.count-1)))
             let temp = cardsArray[i]

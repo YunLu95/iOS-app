@@ -9,9 +9,9 @@ import UIKit
 
 class MasterViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
     var sizeOfGrid = 2
-    let emojiChoices=["👽","😈","🤡","👿","🤢","🎃","😺","💩","👾","🤠","👺","👹","🤖","🌛","🌜","🌟","⛄️","✨"]
+    
     private let spacing : CGFloat = 10.0
-   // private let numberOfCardPerRow
+
     var model = CardModel()
     
     var cardArray = [Card]()
@@ -26,9 +26,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // Do any additional setup after loading the view.
         menuBtn.addTarget(self, action: #selector(menuBtnPressed), for: UIControl.Event.touchUpInside)
-       // model.setGridSize(sizeOfGrid)
         cardArray = model.getCards(number: sizeOfGrid)
-        
         
         collectionView.delegate = self
         
@@ -43,25 +41,16 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
        
     }
     
-
-    func transitionToViewController (){
-        let controller = MenuViewController()
-        controller.willMove(toParent: self)
-        let current = children.first
-        addChild(controller)
-        self.view.addSubview(controller.view)
-        controller.didMove(toParent: self)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        current?.willMove(toParent: nil)
-        current?.view.removeFromSuperview()
-        current?.didMove(toParent: nil)
-    
+        if let menuVC = segue.destination as? MenuViewController {
+            menuVC.delegate = self
+        }
     }
     
     
     @IBAction func menuBtnPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "menuSegue", sender: self)
-       // print("Menu pressed!")
+        self.performSegue(withIdentifier: "menuSegue", sender: self)
 
     }
     
@@ -94,7 +83,6 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
             }else{
                 //perform matching
                 cardMatches(indexPath)
-//                checkGameEnd()
             }
         }
     }
@@ -147,7 +135,7 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     
-    // function I tried to use to get cells auto sized but not working yet.
+    // function used to get cells auto sized
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCardPerRow: CGFloat = CGFloat(sizeOfGrid);
         let spacingBetweenCells: CGFloat = 20;
@@ -155,12 +143,33 @@ class MasterViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if let collection = self.collectionView{
             let width = (collection.bounds.width - totalSpacing ) / numberOfCardPerRow
-            return CGSize(width: width, height: width)
+            let height = (collection.bounds.height - totalSpacing) / numberOfCardPerRow
+            return CGSize(width: width, height: height)
         }else{
             return CGSize(width: 0, height: 0)
         }
     }
     
+}
+extension MasterViewController: MenuViewControllerDelegate{
+    
+    func buttonPressed(size: Int) {
+        
+        cardArray.enumerated().forEach { (index, card) in
+            let indexPath = IndexPath(item: index, section: 0)
+            let cell = collectionView.cellForItem(at: indexPath ) as? CollectionViewCell
+            cell?.filpBack()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.sizeOfGrid = size
+            self.cardArray = self.model.getCards(number: size)
+            self.collectionView.reloadData()
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+        
+        dismiss(animated: true)
+    }
 }
 
 
